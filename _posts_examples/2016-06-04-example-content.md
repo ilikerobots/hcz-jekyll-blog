@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Example content for posts  
+title: 
 categories: others
 ---
 

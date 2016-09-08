@@ -4,8 +4,20 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
+I love writing software.  I like just thinking about software.  
 
-You can find the source code for this Jekyll theme at: [github.com/ashutosh2k12/hcz-jekyll-blog](https://github.com/ashutosh2k12/hcz-jekyll-blog)
+I live in Tallinn, Estonia, a beautiful city in a remarkable country.
 
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+When I step away from the computer, I also enjoy:
+ * Baseball; I play for the [Kostivere Amigos](https://et-ee.facebook.com/KostivereAmigos/); come join us or watch us!
+ * Travel
+ * Camping; see [Camp Estonia](http://www.campestonia.com/about)
+ * Knot tying; I created the [Gersik knot](http://igkt.net/sm/index.php?topic=4178.0)
+ * Weight-lifting
+
+I am currently taking hiatus of the following hobbies:
+ * Bread Baking
+ * Reading
+ 
+  
+My online moniker is _ilikerobots_.

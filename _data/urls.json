@@ -8,28 +8,27 @@
   {
     "text": "About",
     "url": "/about/",
-    "icon": "fa-comments"
+    "icon": "fa-user"
   },
   {
     "text": "Projects",
     "url": "/projects",
     "icon": "fa-desktop"
   },
-  {
-    "text": "Resume",
-    "url": "#",
-    "icon": "fa-graduation-cap",
-    "layout": "post"
+ {
+    "text": "Github",
+    "url": "https://github.com/ilikerobots/",
+    "icon": "fa-github"
   },
   {
-    "text": "Github",
-    "url": "",
-    "icon": "fa-github"
+    "text": "CV",
+    "url": "https://www.linkedin.com/in/mike-hoolehan",
+    "icon": "fa-linkedin"
   },
   {
     "text": "XML Feed",
     "url": "/feed.xml",
     "icon": "fa-feed",
-    "target": _blank
+    "target": "_blank"
   }
 ]

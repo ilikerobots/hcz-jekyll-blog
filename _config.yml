@@ -1,15 +1,15 @@
-title: John Smith
+title: Mike Hoolehan
 description: My Personal Blog
-author: John Smith
-logo: /static/img/avatar.png
-github: https://github.com/ashutosh2k12
-about: Freelance developer
+author: Mike Hoolehan
+logo: /static/img/ilikerobots.png
+github: https://github.com/ilikerobots
+about: Software developer
 
 baseurl: ""
-url: "http://aboutashu.com/hcz-jekyll-blog"
+url: "http://www.hoolehan.com/mike"
 
-disqus_shortname: aboutashu
-google_analytics: UA-72862926-1
+disqus_shortname: ilikerobots
+google_analytics: UA-83216566-1
 
 share:
   twitter_username: \#
