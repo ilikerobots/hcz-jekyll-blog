@@ -24,8 +24,8 @@ implementation and it makes a lot more sense than the traditional
 webfont/css method for icons.
 
 A typical iconset is defined in an html file:
-```html
 
+```html
 <iron-iconset-svg size="1000" name="my-fancy-icons">
 <svg xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -37,6 +37,7 @@ A typical iconset is defined in an html file:
 ``` 
 
 and then subsequently used elsewhere 
+
 ```html
 <iron-icon icon="my-fancy-icons:star"></iron-icon>
 ```
