@@ -1,18 +1,14 @@
 [
   {
-    "icon": "fa-facebook",
-    "link": ""
-  },
-  {
     "icon": "fa-twitter",
-    "link": ""
+    "link": "https://twitter.com/ilikerobotz"
   },
   {
     "icon": "fa-linkedin",
-    "link": ""
+    "link": "http://www.linkedin.com/in/mike-hoolehan"
   },
   {
-    "icon": "fa-stack-exchange",
-    "link": ""
+    "icon": "fa-github",
+    "link": "https://github.com/ilikerobots/"
   }
 ]

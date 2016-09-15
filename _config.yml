@@ -6,13 +6,13 @@ github: https://github.com/ilikerobots
 about: Software developer
 
 baseurl: ""
-url: "http://www.hoolehan.com/mike"
+url: "https://ilikerobots.github.io"
 
-disqus_shortname: ilikerobots
+#disqus_shortname: ilikerobots
 google_analytics: UA-83216566-1
 
 share:
-  twitter_username: \#
+  twitter_username: ilikerobotz
   fb_appid: 000000000000
 
 

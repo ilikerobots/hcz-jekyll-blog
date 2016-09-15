@@ -1,5 +1,12 @@
 [
-
+	{
+		"name": "PolyIcon",
+		"image": "placeholder.jpg",
+		"url": "http://polyicon.com",
+		"description": "Customized Polymer iconset tool",
+		"date": "Sep 2016",
+		"tags": ["Polymer"]
+	},
 	{
 		"name": "ajax-backed-model-behavior",
 		"image": "placeholder.jpg",

@@ -46,6 +46,7 @@ layout: default
 </div>
 
 
+{% if disqus_shortname %}
 <div class="disqus-comments">
     <div id="disqus_thread"></div>
     <script type="text/javascript">
@@ -54,6 +55,7 @@ layout: default
         var disqus_shortname = "{{ site.disqus_shortname }}";
         var disqus_identifier = "{{ site.url }}_{{ page.title }}";
         var disqus_title = "{{ page.title }}";
+        
 
         /* * * DON'T EDIT BELOW THIS LINE * * */
         (function() {
@@ -65,3 +67,4 @@ layout: default
     </script>
 </div>
 </div>
+{% endif %}
