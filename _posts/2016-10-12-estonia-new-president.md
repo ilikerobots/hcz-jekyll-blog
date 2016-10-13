@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Estonian's new president"
+title:  "Estonia's new president"
 date:   2016-09-14  20:50:00
 categories: other 
 ---
