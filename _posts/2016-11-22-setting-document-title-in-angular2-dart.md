@@ -65,6 +65,7 @@ class AppComponent {}
 ```
 
 And update `AppComponent`'s html to show navigation and an outlet for our routed components:
+
 ```html
 <nav>
   <ul>
@@ -109,11 +110,13 @@ class PlayerDetailComponent implements OnInit {
 Here we've anticipated we will retrieve the specific player we are interested in from the route parameters.  We use Angular's `RouteParams` service to obtain the identifier, and then set a property accordingly.   Our detail component doesn't actually provide much useful detail, of course, but this is just an illustration.
 
 Now, create the route to our new `PlayerDetailComponent` by adding the following to `AppComponent`'s `RouteConfig`:
+
 ```dart
   const Route(path: '/player/:id', name: 'PlayerDetail', component: PlayerDetailComponent)
 ```
 
 As we planned, this route expects that a player identifier is provided.  So let's update PlayerComponent to display a list of of players.  First we include a Property containing a simple list of player names
+
 ```dart
 List<String> players = ["John, Tommy", "Carey, Max", "Nehf, Art", "Brown, Mordecai"];
 ```
@@ -122,6 +125,7 @@ _Note: if you now what these ball players have in common, [let me know](https://
 
 
 Then update the corresponding template to display this list, registering a click handler for each player shown.
+
 ```dart
     template: '''
     <h2>Players</h2>
@@ -131,6 +135,7 @@ Then update the corresponding template to display this list, registering a click
 ```
 
 Finally, we implement the handler on `PlayerComponent` to navigate to our detail route, using the clicked player name as our identifier parameter.
+
 ```dart
   void onSelect(String player) {
     _router.navigate(['/PlayerDetail', {'id': player}]);
@@ -158,6 +163,7 @@ However, the import of platform/browser implies that `AppComponent` is aware it 
 
 
 In `main.dart`, we modify our simple bootstrap to additionally register our Title provider, which will be made available throughout our application.
+
 ```dart
   bootstrap(AppComponent, [
     provide(Title, useFactory: () => new Title(), deps: const[])
