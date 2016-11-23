@@ -13,20 +13,20 @@ The solution is [documented nicely for Angular2 Typescript](https://angular.io/d
 
 # Solution Overview
 
-We know Javascript provides a direct way to change a doc title (e.g. ```document.title="No Sweat!"```) which we could emulate, but we would lose abstraction which could make it difficult to run our app in a non-browser environment someday.  Instead, Angular provides a service which provides an API for the rather unpretentious task of getting/setting a document title.  If we rely on this API, we can be sure that wherever we run our app, whatever passes for a "Title" will be accordingly updated when requested.
+We know Javascript provides a direct way to change a doc title (e.g. ```document.title="No Sweat!"```) which we could emulate, but we would lose abstraction which could make it difficult to run the app in a non-browser environment someday.  Instead, Angular provides a service which provides an API for the rather unpretentious task of getting/setting a document title.  If we rely on this API, we can be sure that wherever the app runs, whatever represents a title will be accordingly updated when we want.
 
 
 # Preparation
 
 This demonstration is built on a basic bare-bones Angular2 app (generated from [stagehand](http://stagehand.pub/)).  Read the [quickstart](https://angular.io/docs/dart/latest/quickstart.html) if you need help getting up and running.
 
-The stagehand template gives us a `pubspec.yaml` sufficient for our project plus an AppComponent to serve as a starting point.
+The stagehand template provides us a `pubspec.yaml` sufficient for our project and an AppComponent serving as starting point.
 
 # A Simple App with Routing
 
-Because I like baseball, our simple app will show baseball players, teams, and fields, using a separate component to display each.  Additionally, we allow users to tap a player name to view more detailed info about that player.
+Because I like baseball, this simple app will show baseball players, teams, and fields, using a separate component to display each.  Additionally, we allow users to tap a player name to view more detailed info about that player.
 
-To start, we create three very simple components: `PlayersComponent`, `TeamsComponent`, `FieldsComponent`. Here's `FieldsComponent`:
+To begin, we create three very simple and nearly-identical components: `PlayersComponent`, `TeamsComponent`, `FieldsComponent`. Here's `FieldsComponent`:
 
 ```dart
 import 'package:angular2/core.dart';
@@ -40,7 +40,7 @@ class FieldsComponent {
 }
 ```
 
-Now we update the main `AppComponent` to include a `RouteConfig` that provides easy navigation among our three components:
+We want `AppComponent` to route users to these three components, so we update the main `AppComponent` to include a `RouteConfig` that provides easy navigation:
 
 ```dart
 import 'package:angular2/core.dart';
@@ -64,7 +64,7 @@ import 'package:angular_dart_page_titles_on_route/page/teams_component.dart';
 class AppComponent {}
 ```
 
-And update `AppComponent`'s html to show navigation and an outlet for our routed components:
+Now that the routes are paved, we update `AppComponent`'s HTML to show navigation links and an outlet for routed components:
 
 ```html
 <nav>
@@ -80,9 +80,9 @@ And update `AppComponent`'s html to show navigation and an outlet for our routed
 </div>
 ```
 
-If we run our project now, we have a simple menu with three items, which we can navigate amongst to show placeholder pages with headings. 
+If we run the project now, we have a simple menu with three items, which we can navigate amongst to show placeholder pages with headings. 
 
-Let's update our app so that we can drill down to specific players.
+Let's update the app so that we can drill down to specific players.
 
 First, we create a `PlayerDetailComponent` that will handle display of individual players.  
 
@@ -109,13 +109,13 @@ class PlayerDetailComponent implements OnInit {
 
 Here we've anticipated we will retrieve the specific player we are interested in from the route parameters.  We use Angular's `RouteParams` service to obtain the identifier, and then set a property accordingly.   Our detail component doesn't actually provide much useful detail, of course, but this is just an illustration.
 
-Now, create the route to our new `PlayerDetailComponent` by adding the following to `AppComponent`'s `RouteConfig`:
+Again, we need to provide a route to the new `PlayerDetailComponent` by adding the following to `AppComponent`'s `RouteConfig`:
 
 ```dart
   const Route(path: '/player/:id', name: 'PlayerDetail', component: PlayerDetailComponent)
 ```
 
-As we planned, this route expects that a player identifier is provided.  So let's update PlayerComponent to display a list of of players.  First we include a Property containing a simple list of player names
+As we planned, this route expects that a player identifier is provided.  So let's update `PlayerComponent` to display a list of of players.  First we include a property containing a simple list of player names
 
 ```dart
 List<String> players = ["John, Tommy", "Carey, Max", "Nehf, Art", "Brown, Mordecai"];
@@ -134,7 +134,7 @@ Then update the corresponding template to display this list, registering a click
     </ul>''',
 ```
 
-Finally, we implement the handler on `PlayerComponent` to navigate to our detail route, using the clicked player name as our identifier parameter.
+Finally, we implement the handler on `PlayerComponent` to navigate to the new detail route, using the clicked player name as our identifier parameter.
 
 ```dart
   void onSelect(String player) {
@@ -147,22 +147,22 @@ If we run the app now, our players page show a list of player names. Tapping any
 We now have an app that provides some simple routing.  We'd really like if the document titles updated when we routed to a new component!
 
 
-_NB! We've cut a lot of corners with our app to keep things simple!_  
+_NB! We've cut a lot of corners with our app to keep our example simple!_  
 
 # Injecting the Title Service
 
 The Angular `Title` service provides a simple API for getting/setting the document title. To utilize the `Title` service, we'll need to inject it into any components that require it.  Usually a service intended to be used commonly throughout the application is best registered in the parent `AppComponent`, e.g.
 
 ```dart
-    import 'package:angular2/platform/browser.dart' show Title;
-    ...
-    const Provider(Title, useClass: Title) // not the best approach in this case
+import 'package:angular2/platform/browser.dart' show Title;
+[...]
+const Provider(Title, useClass: Title) // not the best approach in this case
 ```
 
-However, the import of platform/browser implies that `AppComponent` is aware it is running in the browser.  If we knew that already, we may as well have set the document title directly via the DOM.  We want our individual components to be platfform-agnostic, so it's better if we push the registration of the `Title` service into the Angular bootstrap.
+However, the import of platform/browser implies that `AppComponent` is aware it is running in the browser.  But if we knew that already, we may as well have set the document title directly via the DOM!  We want our individual components to be platform-agnostic, so it's better if we push the registration of the `Title` service into the Angular bootstrap in `main.dart`.
 
 
-In `main.dart`, we modify our simple bootstrap to additionally register our Title provider, which will be made available throughout our application.
+In `main.dart`, we modify our simple bootstrap to additionally register our `Title` provider, which will be made available throughout our application:
 
 ```dart
   bootstrap(AppComponent, [
@@ -171,7 +171,7 @@ In `main.dart`, we modify our simple bootstrap to additionally register our Titl
 ```
 Here we've registered the `Title` token with a factory constructor that simply instantiates a new `Title` object. 
 
-We can now inject this service into all of our components by altering our component constructors to require it.  Here's an updated FieldsComponent that accepts the injected `Title` service and assigns it to a field. 
+We can now inject this service into all of our components by altering our component constructors to require it.  Here's an updated `FieldsComponent` that accepts the injected `Title` service and assigns it to a field. 
 
 ```dart
 import 'package:angular2/core.dart';
@@ -209,11 +209,11 @@ class FieldsComponent implements OnActivate {
     _titleService.setTitle("List of Fields");
   }
 ```
-We've implented the `OnActivate` interface and its abstract method `routerOnActivate`.  This method simply uses the our `Title` field to set the document title to "List of Fields".
+We've implemented the `OnActivate` interface and its abstract method `routerOnActivate`.  This method simply uses the `Title` field to set the document title to "List of Fields".  `PlayersComponent` and `TeamsComponent` are similarly updated.
 
 Running our app now will show an updated document title when we navigate among the three links.  But we still need to address the detail component.  
 
-We could similarily modify the `PlayerDetailComponent` the same as above with a new `routerOnActivate`.  But we can also add it to the existing `onInit` that we use to capture our route parameter:   
+We could modify the `PlayerDetailComponent` in the same manner above with a new `routerOnActivate`.  But we can also add it to the existing `onInit` that we use to capture our route parameter:   
 
 ```dart 
   void ngOnInit() {
@@ -222,7 +222,7 @@ We could similarily modify the `PlayerDetailComponent` the same as above with a 
   }
 ```
 
-And we're done.  The page title will now update when we click a player.
+And we're done.  The page title will now update to include our player name when we click a player.
 
 # Source
 
