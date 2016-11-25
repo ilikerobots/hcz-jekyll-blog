@@ -2,7 +2,7 @@
 layout: post
 title:  "My new blog"
 date:   2016-09-08  08:50:39
-categories: others
+categories: other
 ---
 
 I've been working recently in Dart and Polymer, both of which are young

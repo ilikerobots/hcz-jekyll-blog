@@ -2,7 +2,7 @@
 layout: post
 title:  "Estonia's new president"
 date:   2016-09-14  20:50:00
-categories: other 
+categories: other
 ---
 
 In Estonia, citizens aren't involved in presidential elections.  Rather the parliament votes for the office as they wish.  [Kersti Kaljulaid](https://en.wikipedia.org/wiki/Kersti_Kaljulaid) was recently inaugurated as the fifth president of Estonia.
