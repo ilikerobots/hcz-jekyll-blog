@@ -2,8 +2,11 @@
 layout: post
 title:  "Setting Document Titles in Angular2 Dart"
 date:   2016-11-21  20:51:00
-categories: dart software 
+categories: dart angular2 software
 ---
+
+**Update: My [next post greatly improves]({% post_url 2016-11-25-setting-document-title-in-angular2-dart-improved %}) on this example.  I recommend starting there.**
+
 
 Setting the document title in an Angular2 app isn't as straightforward as simply binding a property to the HTML `<title>` tag.   Since an Angular app lives within the `<body>` of a DOM, Angular2 has no way to bind properties into `<head>` where the title is located.
 
@@ -226,6 +229,6 @@ And we're done.  The page title will now update to include our player name when 
 
 # Source
 
-The [full source code of this example is available on Github](https://github.com/ilikerobots/angular_dart_page_titles_on_route).
+The [full source code of this example is available on Github](https://github.com/ilikerobots/angular_dart_page_titles_on_route/tree/master).
 
 
