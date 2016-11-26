@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Setting Document Titles in Angular2 Dart - Improved"
-date:   2016-11-21  20:51:00
+date:   2016-11-25  17:20:00
 categories: dart angular2 software 
 ---
 
