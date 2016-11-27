@@ -190,7 +190,7 @@ Now we update our service to do something useful, i.e. set the title on routing 
   }    
 ```
 
-We now have a basic `TitleSetService` so let's update our app to use it by providing this new service and its dependency `Title` in `AppCompponent`:
+We now have a basic `TitleSetService` so let's update our app to use it by providing this new service and its dependency `Title` in `AppComponent`:
 
 
 ```dart
@@ -244,11 +244,12 @@ class TitleSetService {
   String _defaultNameStrategy(ComponentInstruction compInst) {
     return compInst.routeName;
   }
+}
 ```
 
 There are several new items here.  First, we've made a typedef that will define a callback interface for naming functions.  Such functions should accept a `ComponentInstruction` and return a `String`.
 
-We've declared a field named `nameStrategy` to store a custom naming function and, in the constructor, initialized it to a default implementation, `_defaultNameStrategy`.
+We've declared a field `nameStrategy` to store a custom naming function and, in the constructor, initialized it to a default implementation, `_defaultNameStrategy`.
 
 Lastly, we've updated `_setTitleFromRoute` to use a custom naming function.
 
