@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Developing Angular2 Dart Asset Services"
-date:   2016-12-26  08:10:00
+date:   2016-12-26  02:10:00
 categories: dart angular2 software 
 ---
 
