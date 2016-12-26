@@ -7,7 +7,7 @@ categories: dart angular2 software
 
 # Developing Angular2 Dart Asset Services, Part 1
 
-Most web apps utilize digital assets to some degree.  These could be as simple as images in your repo and HTML in your templates.  However, with more complex apps, the reasons for these assets to be external multiply rapidly.  For example, an app may need to leverage CDNs, interface with third party providers, or conform to asset licensing restrictions. 
+Most web apps utilize digital assets to some degree.  These could be as simple as images in the source repository and HTML in templates.  However, with more complex apps, the reasons for these assets to be external multiply rapidly.  For example, an app may need to leverage CDNs, interface with third party providers, or conform to asset licensing restrictions. 
 
 In this series of articles, I'll demonstrate how easily we can develop asset services in Angular2 Dart to provide images and content to an app.  With Angular2's dependency injection, we will  effortlessly swap in mocked content providers that accelerate development cycles by deferring the need for production assets.
 
@@ -199,7 +199,7 @@ And then we update `ArticleComponent`'s HTML template to display the content fro
   </div>
 ```
 
-That's it... almost. If we view the app now, we can see randomized placeholder HTML, but the HTML isn't rendered properly.   It's just printed as a text, HTML tags and all.  
+That's it... almost. If we view the app now, we can see randomized placeholder HTML, but the HTML isn't rendered properly.   It's just printed as text, HTML tags and all.  
 
 
 ![Screenshot of kitten reader app](/assets/developing-angular2-dart-asset-services/Screenshot_kittens_html_as_string.png)
@@ -219,7 +219,7 @@ which requires that we include this directive in `ArticleComponent`'s directives
     directives: const <dynamic>[SafeInnerHtmlDirective],
 ``` 
 
-This directive requires usage of of `SafeHtml` rather than a simple `String`, meaning we must convert `String` content  into `SafeHtml`.  One such way is to utilize Angular's DOM sanitization service to designate our trust in the retrieved HTML. First we inject the sanitization service:
+This directive requires we provide `SafeHtml` rather than a simple `String`, so we must convert `String` content  into `SafeHtml`.  One such way is to utilize Angular's DOM sanitization service to designate our trust in the retrieved HTML. First we inject the sanitization service:
 
 ```dart
   final DomSanitizationService _trustService;
@@ -245,11 +245,13 @@ And the article content map changes from containing strings to containing `SafeH
   Map<String, SafeHtml> contents = <String, SafeHtml>{};
 ```
 
-And now we're ready.  Out article HTML is rendered in its proper place.
+And now we're ready.  Article HTML is rendered in its proper place.
 
 ![Screenshot of kitten reader app](/assets/developing-angular2-dart-asset-services/Screenshot_kittens_rendered_html.png)
 
-We've now delegated provision of article HTML content to an abstracted injectable service.  But our placeholder content is too simple and doesn't exercise the app very well.  In Part 2, we'll implement much more capable `ContentService`s, demonstrating how easy Angular2 makes swapping alternative service implementations. 
+# Conclusion
+
+We've now delegated provision of article HTML content to an abstracted injectable service.  But our placeholder content is too simple and doesn't exercise the app very well.  In Part 2, we'll implement much more capable `ContentService`, demonstrating how easy Angular2 makes swapping alternative service implementations. 
 
 # Source
 
