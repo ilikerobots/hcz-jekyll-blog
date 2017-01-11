@@ -5,6 +5,9 @@ date:   2016-12-26  02:10:00
 categories: dart angular2 software 
 ---
 
+_See also [Part 2]({% post_url 2017-01-11-developing-angular2-dart-asset-services-part-2 %})_
+
+
 # Developing Angular2 Dart Asset Services, Part 1
 
 Most web apps utilize digital assets to some degree.  These could be as simple as images in the source repository and HTML in templates.  However, with more complex apps, the reasons for these assets to be external multiply rapidly.  For example, an app may need to leverage CDNs, interface with third party providers, or conform to asset licensing restrictions. 
@@ -251,7 +254,7 @@ And now we're ready.  Article HTML is rendered in its proper place.
 
 # Conclusion
 
-We've now delegated provision of article HTML content to an abstracted injectable service.  But our placeholder content is too simple and doesn't exercise the app very well.  In Part 2, we'll implement much more capable `ContentService`, demonstrating how easy Angular2 makes swapping alternative service implementations. 
+We've now delegated provision of article HTML content to an abstracted injectable service.  But our placeholder content is too simple and doesn't exercise the app very well.  In [Part 2]({% post_url 2017-01-11-developing-angular2-dart-asset-services-part-2 %}), we'll implement much more capable `ContentService`, demonstrating how easy Angular2 makes swapping alternative service implementations. 
 
 # Source
 
