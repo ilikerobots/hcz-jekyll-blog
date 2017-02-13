@@ -6,7 +6,7 @@ permalink: /about/
 
 I love writing software.  I like just thinking about software.  
 
-I live in Tallinn, Estonia, a beautiful city in a remarkable country.
+I live in [Tallinn, Estonia](https://intallinn.ee), a beautiful city in a remarkable country.
 
 
 

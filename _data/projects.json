@@ -40,6 +40,14 @@
 		"tags": ["Android","Cordova","jQuery", "Google Maps"]
 	},
 	{
+		"name": "inTallinn",
+		"image": "placeholder.jpg",
+		"url": "https://intallinn.ee",
+		"date": "Feb 2017",
+		"description": "Inside tips for visiting Tallinn Estonia",
+		"tags": ["Dart","Angular","Google Maps"]
+	},
+	{
 		"name": "app-layout",
 		"image": "placeholder.jpg",
 		"url": "https://github.com/ilikerobots/polymer-app-layout",
