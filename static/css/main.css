@@ -177,3 +177,7 @@ footer {
 .btn.btn-raised.btn-primary {
     background-color: #0081C6;
 }
+.center-image {
+    margin: 0 auto;
+    display: block;
+}

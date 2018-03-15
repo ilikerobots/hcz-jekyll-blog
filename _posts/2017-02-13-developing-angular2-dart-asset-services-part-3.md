@@ -200,7 +200,6 @@ Here we've described two input photo assets, along with our their desired output
 We now define the licenses used above, including the necessary attribution requirements for each.  Example:
 
 ```dart
-
 abstract class License {
   LicenseType get type;
   String getAttribution(String author);

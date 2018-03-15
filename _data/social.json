@@ -8,6 +8,10 @@
     "link": "http://www.linkedin.com/in/mike-hoolehan"
   },
   {
+    "icon": "fa-medium",
+    "link": "https://medium.com/@ilikerobots"
+  },
+  {
     "icon": "fa-github",
     "link": "https://github.com/ilikerobots/"
   }

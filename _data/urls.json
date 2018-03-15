@@ -21,6 +21,11 @@
     "icon": "fa-github"
   },
   {
+    "text": "Medium",
+    "url": "https://medium.com/@ilikerobots",
+    "icon": "fa-medium"
+  },
+  {
     "text": "CV",
     "url": "https://www.linkedin.com/in/mike-hoolehan",
     "icon": "fa-linkedin"
