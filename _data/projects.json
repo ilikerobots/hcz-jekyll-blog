@@ -1,5 +1,29 @@
 [
 	{
+		"name": "Estonia 100 on Amazon Alexa",
+		"image": "placeholder.jpg",
+		"url": "https://www.ev100.ee/en/amazons-alexa-talking-about-estonia",
+		"description": "Alexa voice app featuring Estonian facts, sayings, and basic phrases",
+		"date": "Jan 2018",
+		"tags": ["Android", "Alexa", "Voice"]
+	},
+	{
+		"name": "Edible Plants of Estonia",
+		"image": "placeholder.jpg",
+		"url": "https://play.google.com/store/apps/details?id=com.starheightmedia.estoniaediblesmobile",
+		"description": "Guide to Estonia's wild edibles, built for Android with Flutter",
+		"date": "May 2018",
+		"tags": ["Flutter", "Dart", "Android"]
+	},
+	{
+		"name": "FlutterIcon",
+		"image": "placeholder.jpg",
+		"url": "http://polyicon.com",
+		"description": "Custom Flutter icon fonts",
+		"date": "Apr 2018",
+		"tags": ["Flutter", "Dart"]
+	},
+	{
 		"name": "PolyIcon",
 		"image": "placeholder.jpg",
 		"url": "http://polyicon.com",
@@ -44,8 +68,8 @@
 		"image": "placeholder.jpg",
 		"url": "https://intallinn.ee",
 		"date": "Feb 2017",
-		"description": "Inside tips for visiting Tallinn Estonia",
-		"tags": ["Dart","Angular","Google Maps"]
+		"description": "Inside tips for visiting Tallinn Estonia, Web/Android",
+		"tags": ["Dart","Angular","Google Maps", "Flutter"]
 	},
 	{
 		"name": "app-layout",
