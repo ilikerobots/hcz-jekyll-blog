@@ -17,6 +17,7 @@ Could I have the best of both frontends?
 
 Of course!  This article would have been spectacularly inessential otherwise.
 
+![Vue + Django](/assets/django-and-vue-multipage-assets/vue_plus_django_opt.svg){:width="90%" .center-image}
 
 ## Django Webpack Loader and the Vue Multi-Page App
 
@@ -41,7 +42,7 @@ We'll start by embedding an entire simple Vue project in a subdirectory of our D
 sudo npm install -g @vue/cli
 ```
 
-Then we'll use the CLI to build the stock Vue starting project, placing it a `vue_frontend` directory
+Then we'll use the CLI to build the stock Vue starting project, placing it in the `vue_frontend` directory
 
 ```sh
 vue create vue_frontend
@@ -67,7 +68,7 @@ First off, we'll need a helper package `webpack-bundle-tracker` to help us track
 yarn add webpack-bundle-tracker --dev
 ```
 
-Next we'll reconfigure the vue project.  Create `vue_fontend/vue.config.js` with the contents
+Next we'll reconfigure the Vue project.  Create `vue_fontend/vue.config.js` with the contents
 
 ```js
 const BundleTracker = require("webpack-bundle-tracker");
@@ -134,7 +135,7 @@ module.exports = {
 
 Let's explore this configuration.
 
-Upfront we declare a list of our pages `vue_app_01` and `vue_app_02`, which will become the name of our bundles, and define points of entry for each.  Note that `main.js` came with our starter app, but we haven't build `newhampshir.js` yet.  We will shortly.     
+Upfront we declare a list of our pages `vue_app_01` and `vue_app_02`, which will become the names of our bundles, and define points of entry for each.  Note that `main.js` came with our starter app, but we haven't build `newhampshir.js` yet.  We will shortly.     
 
 The `publicPath` section defines how Django will locate our bundles.  We have two variations which can be used, one for production and one for non-production.  In production, we set the `publicPath` empty, as this signals to `django-webpack-loader` to fall back to Django's standard static finder behavior.  However, in non-production mode we override this to point to our own webpack development server.
 
@@ -232,7 +233,7 @@ WEBPACK_LOADER = {
 
 This configuration points `django-webpack-loader` to the stats file we generate during our Vue build.  
 
-We're almost there.  The final step is to alter our templates to include our new Vue apps.   Choose one of your existing django template files (in my case `vue_app_01.html`) and add the following:
+We're almost there.  The final step is to alter our templates to include our new Vue apps.   Choose one of your existing Django template files (in my case `vue_app_01.html`) and add the following:
 
 {% raw  %}
 ```
@@ -263,7 +264,7 @@ And, in a separate terminal in the Django root directory, run Django development
 ./manage.py runserver
 ```
 
-Point your browser to your django app (e.g. `http://localhost:8000`) and check out the two pages you modified.  You should see your templates, but now with each running a separate Vue components.
+Point your browser to your Django app (e.g. `http://localhost:8000`) and check out the two pages you modified.  You should see your templates, but now with each running a separate Vue components.
 
 
 
@@ -273,7 +274,7 @@ Point your browser to your django app (e.g. `http://localhost:8000`) and check o
 Inspecting the dev console, you can see that the Vue JS/CSS is being served from our webpack development server.  Also, both components are sharing the same `chunk-vendors.js` bundle.  Further, we can demonstrate that hot-reloading is working correctly by making an alteration to one of our components.  Without requiring a reload, the updates should take effect directly in the browser.
 
 
-When it's time to deploy, or when we simply want to omit running our Vue dev server, we can build our Vue project in production mode.  Cancel the `yarn serve` process if it's running and instead run `yarn build`.  The optimized bundles will be built in and placed into our Django static file location, and `webpack-stats.json` will be updated to reflect this new configuration.  Go back to your web-browser, reload the page, and you'll see that the Vue JS/CSS bundles are now loaded from your standard static files location.  
+When it's time to deploy, or when we simply want to omit running our Vue dev server, we can build our Vue project in production mode.  Cancel the `yarn serve` process if it's running and instead run `yarn build`.  The optimized bundles will be built in and placed into our Django static file location, and `webpack-stats.json` will be updated to reflect this new configuration.  Go back to your web browser, reload the page, and you'll see that the Vue JS/CSS bundles are now loaded from your standard static files location.  
 
 ## Conclusion
 
