@@ -2,7 +2,7 @@
 layout: post
 title:  "Testing Amazon Alexa skills with Chai and fixtures"
 date:   2018-01-26  02:00:00
-categories: javascript, software 
+categories: javascript software 
 ---
 
 # Testing Amazon Alexa skills with Chai and fixtures

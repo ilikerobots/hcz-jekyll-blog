@@ -2,7 +2,7 @@
 layout: post
 title:  "Storyboarding Widgets in Flutter"
 date:   2018-03-12  02:00:00
-categories: flutter, dart, software 
+categories: flutter dart software 
 ---
 
 # Storyboarding Widgets in Flutter
