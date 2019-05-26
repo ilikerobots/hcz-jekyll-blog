@@ -9,9 +9,9 @@ categories: django vue software
 
 Django and Vue both have unique frontend strengths.  Django's context-driven templates offer rapid development of pages directly from backend model content. Vue's modern reactive components provide powerful tools for building complex UIs within the rich Javascript ecosystem.   
 
-However, typical solutions to integrating Django and Vue forgo much of the strengths of one lieu of the other.  For example, a common approach is to use Django Rest Framework as backend and writing the entire front end in Vue, making it difficult to utilize Django templates in places it could be advantageous.  A second approach is to use Vue within Django templates using browser `<script>` includes, but then lost is the ability to use Vue's Single File Components.
+However, typical solutions to integrating Django and Vue forgo much of the strengths of one lieu of the other.  For example, a common approach is to use Django Rest Framework as backend and writing the entire front end in Vue, making it difficult to utilize Django templates in places it could be expedient.  A second approach is to use Vue within Django templates using browser `<script>` includes, but then lost is the ability to use Vue's Single File Components.
 
-I recently started a project where I wanted the option to use both Django Templates and Vue's full power, without compromising either.  Most of my site's pages were relatively static listings of backend data with limited interactivity, exactly what Django excels at it in a few lines of code.   But I had small number of pages that contained specific areas of more complex data-driven interactivity, Vue's forté.   Could I find a way to rely on Django templates for my simpler pages while enriching parts of pages with Vue, all in a easy-to-manage configuration?
+I recently started a project where I wanted to reserve the option to utilize both Django Templates and Vue, without compromising either.  Most of my site's pages were relatively static listings of backend data with limited interactivity, exactly what Django excels at it in a few lines of code.   But I had small number of pages that contained specific areas of more complex data-driven interactivity, Vue's forté.   Could I find a way to rely on Django templates for my simpler pages while enriching parts of pages with Vue, all in a easy-to-manage configuration?
 
 Could I have the best of both frontends?  
 
@@ -20,11 +20,11 @@ Of course!  This article would have been spectacularly inessential otherwise.
 
 ## Django Webpack Loader and the Vue Multi-Page App
 
-The key pieces in this solution are the `django-webpack-loader` Django app and Vue's [ability to support Multi-Page Apps](https://cli.vuejs.org/guide/html-and-static-assets.html#building-a-multi-page-app).  By combining these tools, one can build a standard template-driven Django application that incorporates one or more individual webpack bundles on individuals templates.  Each of these bundles is a separate Vue "page", that can be built using all the standard Vue/Javascript/Webpack tooling.
+The key pieces in this solution are the `django-webpack-loader` Django app and Vue's [ability to support Multi-Page Apps](https://cli.vuejs.org/guide/html-and-static-assets.html#building-a-multi-page-app).  By combining these tools, one can build a standard template-driven Django application that incorporates one or more individual webpack bundles in Django views.  Each of these bundles is a separate Vue "page" that can be built using all the standard Vue/Javascript/Webpack tooling.
 
 ## Adapting a Django project to use Vue
 
-In the remaining sections of this article, I'll modify a basic template-driven Django app to utilize Vue components authored as Single File Components.  I omit the steps of building a simple Django site as it is [well-documented](https://docs.djangoproject.com/en/2.2/intro/tutorial01/) already, but if you would like a simplified template, you can use this article's example repo at tag [example_start](https://github.com/ilikerobots/django-vue-mpa/tree/example_start).   
+In the remaining sections of this article, I'll illustrate the modification of a basic template-driven Django app to utilize Vue components authored as Single File Components.  I omit the steps of building a simple Django site as it is [well-documented](https://docs.djangoproject.com/en/2.2/intro/tutorial01/) already, but if you would like a simplified starter point, you can use this article's example repo at tag [example_start](https://github.com/ilikerobots/django-vue-mpa/tree/example_start).   
 
 For the purposes of this article, I assume you have two working templates into which you would like to add separate Vue components. 
 
@@ -41,7 +41,7 @@ We'll start by embedding an entire simple Vue project in a subdirectory of our D
 sudo npm install -g @vue/cli
 ```
 
-Then we'll use the CLI to build the stock starting project, placing it a `vue_frontend` directory
+Then we'll use the CLI to build the stock Vue starting project, placing it a `vue_frontend` directory
 
 ```sh
 vue create vue_frontend
@@ -136,11 +136,11 @@ Let's explore this configuration.
 
 Upfront we declare a list of our pages `vue_app_01` and `vue_app_02`, which will become the name of our bundles, and define points of entry for each.  Note that `main.js` came with our starter app, but we haven't build `newhampshir.js` yet.  We will shortly.     
 
-The `publicPath` section defines how Django will locate our bundles.  We have two variations which can be used, one for production and one for non-production.  In production, we set the `publicPath` empty, as this signals to `django-webpack-loader` to fall back to standard static finder behavior.  However, in non-production mode we override this to point to our own webpack development server.
+The `publicPath` section defines how Django will locate our bundles.  We have two variations which can be used, one for production and one for non-production.  In production, we set the `publicPath` empty, as this signals to `django-webpack-loader` to fall back to Django's standard static finder behavior.  However, in non-production mode we override this to point to our own webpack development server.
 
-The `outputDir` defines where the production ready Javascript/CSS will be placed.  This should be one of your Django application's static file locations. 
+The `outputDir` defines where the production ready Javascript/CSS will be placed.  This most likely should be one of your Django application's static file locations.
 
-Next we optimize our build using the splitChunks plugin, configuring it to extract any vendor javascripts into a single shared bundle.  This will allow us to keep our invdividual component javascript files small and allow browsers to cache our common javascripts while moving among pages.
+Next we optimize our build using the splitChunks plugin, configuring it to extract any vendor javascripts into a single shared bundle.  This allows us to keep our individual component javascript files small and allow browsers to cache our common javascript while moving among pages.
 
 By default, Vue constructs corresponding html files for our bundles, but we have no need for them since we'll be serving our bundles from Django templates.  By deleting the appropriate plugins from our config we can prevent these from being generated.
 
@@ -197,9 +197,9 @@ Now our Vue frontend is ready.  We can confirm everything builds correctly by is
 ```
 
 
-### Configuring Djagno to use webpack bundles
+### Configuring Django to use webpack bundles
 
-Now that our Vue application is building correctly, we need to instruct Django how to locate and render these.  The `django-wepack-loader` project takes care of most of this for us.  Add this package to your Django app, by adding the following line to your ```requirements.txt```:
+Now that our Vue application is building bundles correctly, we need to instruct Django how to locate and render these.  The `django-wepack-loader` project takes care of most of this for us.  Add this package to your Django app, by adding the following line to your ```requirements.txt```:
 
 ```
 django-webpack-loader==0.6.0
@@ -232,7 +232,7 @@ WEBPACK_LOADER = {
 
 This configuration points `django-webpack-loader` to the stats file we generate during our Vue build.  
 
-We're almost there.  The final step is to alter our templates to include our Vue new apps.   Choose one of your existing django template files (in my case `vue_app_01.html`) and add the following:
+We're almost there.  The final step is to alter our templates to include our new Vue apps.   Choose one of your existing django template files (in my case `vue_app_01.html`) and add the following:
 
 {% raw  %}
 ```
@@ -270,7 +270,7 @@ Point your browser to your django app (e.g. `http://localhost:8000`) and check o
 ![Starting with no Vue](/assets/django-and-vue-multipage-assets/Screenshot_vue_django_two_apps.png){:width="90%" .center-image}
 
 
-Inspecting the dev console, you can see that the Vue JS/CSS is being served from our webpack development server.  Also, both components are sharing the same `chunk-vendors.js` bundle.  Further, we can demonstrate that hot-reloading is working correctly by making an alteration to one of our components.  Without requireing a reload, the updates should take effect directly in the browser.
+Inspecting the dev console, you can see that the Vue JS/CSS is being served from our webpack development server.  Also, both components are sharing the same `chunk-vendors.js` bundle.  Further, we can demonstrate that hot-reloading is working correctly by making an alteration to one of our components.  Without requiring a reload, the updates should take effect directly in the browser.
 
 
 When it's time to deploy, or when we simply want to omit running our Vue dev server, we can build our Vue project in production mode.  Cancel the `yarn serve` process if it's running and instead run `yarn build`.  The optimized bundles will be built in and placed into our Django static file location, and `webpack-stats.json` will be updated to reflect this new configuration.  Go back to your web-browser, reload the page, and you'll see that the Vue JS/CSS bundles are now loaded from your standard static files location.  
@@ -288,6 +288,7 @@ The Vue components used in this example are very simple, but you are free to mak
 Using this technique, you are not limited to a single Vue component per page.  If you want to mount multiple components in separate containers on a single page, just mount each accordingly using a separate selector. 
 
 Regarding editors, I have my Python IDE (PyCharm) opened to my Django application root, and in a separate window I keep my Javascript IDE (Webstorm) opened in the `vue_frontend` directory as a separate project.   This helps keeps a nice separation between the two.
+
 
 I don't advocate any specific approach to production configuration.  You may wish to commit a production webpack-stats.json, maintain two separate versions for dev/production, or incorporate the building of bundles and `webpack-stats.json` into your delivery process. 
 
