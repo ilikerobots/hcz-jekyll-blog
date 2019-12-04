@@ -5,6 +5,8 @@ date:   2019-05-26  02:00:00
 categories: django vue software 
 ---
 
+_See also [Part 2]({% post_url 2019-12-04-django-vue-vuex %})_
+
 # Django and Vue - Best of Both Frontends
 
 Django and Vue both have unique frontend strengths.  Django's context-driven templates offer rapid development of pages directly from backend model content. Vue's modern reactive components provide powerful tools for building complex UIs within the rich Javascript ecosystem.   
@@ -293,6 +295,7 @@ Regarding editors, I have my Python IDE (PyCharm) opened to my Django applicatio
 
 I don't advocate any specific approach to production configuration.  You may wish to commit a production webpack-stats.json, maintain two separate versions for dev/production, or incorporate the building of bundles and `webpack-stats.json` into your delivery process. 
 
+A [follow-up to this article]({% post_url 2019-12-04-django-vue-vuex %}) explains how to integrate Vuex, sharing state across components in a single page or between page loads.
 
 ### Acknowledgements 
 
