@@ -13,7 +13,7 @@ In my [previous article]({% post_url 2019-05-26-django-and-vue-multipage %}) I d
 
 The article implemented a very simple example. Since writing the article, I've received several questions regarding information sharing from Django to Vue and among Vue components on a single page.
 
-In this article, I'll explain how Vuex can be introduced into the Vue MPA and information state can be
+In this article, I'll explain how Vuex can be introduced into the Vue MPA and information can be
   * shared between multiple components on a single page
   * persisted in components across page loads 
   * passed from Django templates to Vue properties
@@ -23,9 +23,7 @@ In this article, I'll explain how Vuex can be introduced into the Vue MPA and in
 
 ## Introducing Vuex to a Vue/Django Project 
 
- I'll introduce two simple counter components to our Django application's index page.  These components will retrieve and mutate their state from the same Vuex store.  Further, each counter will display a message provided as a Vue property from a Django template variable.  
-
-These are very simple examples, but it should be clear how to expand this to numerous disparate components on a single page all sharing complex state.
+ I'll introduce two simple Vue counter components to a single page of a Django application.  These components will retrieve and mutate their state from the same Vuex store.  Additionally, each counter will display a message provided as a Vue property from a Django template variable.  
 
 I'll continue from where I left in Part 1: a working Django App integrated with a couple of Vue components.  If you're following along with the code, then the starting point in the example repo at is tagged [part_1](https://github.com/ilikerobots/django-vue-mpa/tree/part_1).   
 
