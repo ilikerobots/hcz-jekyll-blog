@@ -204,7 +204,7 @@ Next, we create a Vuex store, utilizing the counter module we created earlier.  
 
 Lastly, per Christo's technique, we export a Vue plugin that does a single thing, which is to override the standard `$store` object with our common store.  This will ensure that all our components on a single page will be utilizing the same store instance.
 
-Now that we've built our Vuex-Store-As-Plugin, let's instruct our entypoint `index.js` to use it by adding a couple lines:
+Now that we've built our Vuex-Store-As-Plugin, let's instruct our entrypoint `index.js` to use it by adding a couple lines:
 
 ```js
 import Vue from "vue/dist/vue.js"; 
@@ -255,7 +255,7 @@ Increment the counters a few times and reload the page, and the persistedState p
 
 ## Conclusion
 
-By introducing multiple Vue components, managed by a common Vuex state, to a single Django page, it is easy to intermingle the two frontend technologies, leveraging each in a single app where it would be most suitable without sacrificing the strengths of either.  
+By introducing multiple Vue components managed by a common Vuex state to a single Django page, it is easy to intermingle the two frontend technologies, leveraging each in a single app where it would be most suitable without sacrificing the strengths of either.  
 
 ### Acknowledgements 
 
