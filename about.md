@@ -15,8 +15,9 @@ When I step away from the computer, I also enjoy:
 * Baseball; I play for the [Kostivere Amigos](https://et-ee.facebook.com/KostivereAmigos/); come join us or watch us!
 * Travel
 * Camping; see [Camp Estonia](http://www.campestonia.com/about)
+* Bike Touring
+* Edible Plants; see [Edible Plants of Estonia](https://play.google.com/store/apps/details?id=com.starheightmedia.estoniaediblesmobile)
 * Knot tying; I created the [Gersik knot](http://igkt.net/sm/index.php?topic=4178.0)
-* Weight-lifting
 
 I am currently taking hiatus of the following hobbies:
 

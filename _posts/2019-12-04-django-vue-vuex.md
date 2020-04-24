@@ -7,6 +7,8 @@ categories: django vue vuex software
 
 _Continued from [Part 1]({% post_url 2019-05-26-django-and-vue-multipage %})_
 
+_See also [Part 3]({% post_url 2020-04-23-django-vue-fast-content-rich-interactivity %})_
+
 # Django, Vue, Vuex - Best of Both Frontends
 
 In my [previous article]({% post_url 2019-05-26-django-and-vue-multipage %}) I demonstrated how to use Vue's Multi-Page App (MPA) support to embed Vue Single File Components into a Django template, allowing developers to effectively mix usage of Django templates and Vue within an application.  
@@ -41,7 +43,7 @@ yarn add vuex vuex-persistedstate
 
 ### A Simple Counter Component
 
-Cribbing from Vuex's tutorial, let's create `src/components/HelloWorld.js` with a simple counter component:
+Cribbing from Vuex's tutorial, let's create `src/components/HelloWorld.vue` with a simple counter component:
 
 ```vue
 <template>
