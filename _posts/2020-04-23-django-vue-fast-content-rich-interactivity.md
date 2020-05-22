@@ -9,15 +9,15 @@ _See also [Part 2]({% post_url 2019-12-04-django-vue-vuex %}) of this Django + V
 
 # Django + Vue - Blazing Content, Rich Interactivity
 
-Albert Einstein discovered in 1905 the curious phenomena of the _mass defect_, which is that the mass of a molecule is less than the sum of the masses of its constituent atoms.  In other words, he found that when two atoms are combined, the new molecule weighs less than the total weight of the original two atoms.  
+Albert Einstein discovered in 1905 the curious phenomenon of the _mass defect_, which is that the mass of a molecule is less than the sum of the masses of its constituent atoms.  In other words, he found that when two atoms are combined, the new molecule weighs less than the total weight of the original two atoms.  
 
-Now, Einstein knew that nothing was truly lost and that mass defect could be explained by the interchangeability of mass and energy described by his famous equation E=mc^2. 
+Now, Einstein knew that nothing was truly lost and the mass defect could be explained by the interchangeability of mass and energy described by his famous equation E=mc^2. 
 
-But how often do we attempt to combine software frameworks only to find that the result is less than the sum of its parts?  We are forced to compromise, to forgo the most compelling and innovative features to preserve compatibility.
+But how often do we attempt to combine software frameworks only to find that the result is less than the sum of its parts?  We are forced to compromise, to forgo the most compelling and innovative features to preserve compatibility.  We discover a _quality defect_.
 
-Several months ago I began a project combining Django's frontend templating framework and Vue.  I wanted Django's tight integration to ORM and flexible caching.  I wanted Vue's modern Javascript flexibility and dynamism. I was fully expecting that I would lose something in the mix, that I would encounter a _quality defect_, limiting my ability to fully leverage one or both in my project.
+Several months ago I began a project combining Django's frontend templating framework and Vue.  I wanted Django's tight integration to ORM and flexible caching.  I wanted Vue's modern Javascript flexibility and dynamism. I was fully expecting that I would lose something in the mix, limiting my ability to fully leverage one or both in my project.
 
-But, after several months of working to meld these two technologies and, ultimately, launching my website, I am both surprised and pleased to find that I have been able to use every feature of Django and Vue that I have wished.  Further, progress on my bipartite project **has been faster, easier, and more enjoyable than had I used Django or Vue exclusively.**
+But, after several months of working to meld these two technologies and, ultimately, launching my website, I am both surprised and pleased to find that I have been able to use every feature of Django and Vue I have wished.  Further, progress on my bipartite project **has been faster, easier, and more enjoyable than had I used Django or Vue exclusively.**
 
 In the remainder of this article, I will demonstrate how Django and Vue can be used to deliver speedy pages that, in some scenarios, may be more performant than either Vue or Django would have delivered alone.
 
@@ -38,9 +38,7 @@ This article will demonstrate how to lazy-load Vue components into a Django temp
 
 ![Vue + Django](/assets/django-and-vue-multipage-assets/vue_plus_django_opt.svg){:width="90%" .center-image}
 
-I'll continue from where I left in Part 2: a working Django App integrated with a couple of Vue components using Vuex.  
-
-The companion example application also continues from the [same repository](https://github.com/ilikerobots/django-vue-mpa/tree/part_2) used in prior articles in this series.  The starting point for this article is tagged [part_2](https://github.com/ilikerobots/django-vue-mpa/tree/part_2).   
+I'll continue from where I left in Part 2: a working Django App integrated with a couple of Vue components using Vuex.  The companion example application also continues from the [same repository](https://github.com/ilikerobots/django-vue-mpa/tree/part_2) used in prior articles in this series.  The starting point for this article is tagged [part_2](https://github.com/ilikerobots/django-vue-mpa/tree/part_2).   
 
 Additionally, at the end of the article I'll share links to a real world example.
 
@@ -55,7 +53,7 @@ First, we add Moment.js to our dependencies.
 yarn add momentjs
 ```
 
-And here is our Stopwatch component, which simply displays the number of second since it was loaded.
+And here is our Stopwatch component, which simply displays the number of seconds since it was loaded.
 
 ```vue
 <template>
@@ -120,7 +118,7 @@ If we did so, however, the component and all dependencies would be loaded immedi
 
 ### Splitting Chunks for Dependencies
 
-But first, our Stopwatch's dependency on Moment.js has caused us another problem.  The `chunk-vendor` chunk, which contains all of our third party depdencies, has grown in size.  But since Moment.js is used only in a single component in our application, it's inefficient to include it in our main vendor chunk, which is used throughout our application.  
+But first, our Stopwatch's dependency on Moment.js has caused us another problem.  The `chunk-vendor` chunk, which contains all of our third party dependencies, now also includes Moment.js.  But since Moment.js is used only in a single component in our application, it's inefficient to include it in our main vendor chunk, which is used throughout our application.  
 
 
 Currently, in our `vue.config.js` we define only a single chunk:
@@ -149,7 +147,6 @@ We see that `chunk-vendors` is now dominated by Moment.js.
 We can remedy this by splitting the Moment.js dependency into a separate chunk. To do so, we add a separate cacheGroup to include only the code for the Moment.js dependency.
 
 ```js
-
 config.optimization.splitChunks({
   cacheGroups: {
     moment: {
@@ -168,9 +165,9 @@ config.optimization.splitChunks({
 });
 ```
 
-Note the `test` for our new chunk is a regular expression that will match on the entire Moment.js library.  Also, we give this new chunk with a higher priority, ensuring any modules unmatched will be collected into the base vendor chunk.
+Note the `test` for our new chunk is a regular expression that will match on the entire Moment.js library.  Also, we give this new chunk a higher priority, ensuring any modules unmatched will be collected into the base vendor chunk.
 
-With this change, we can inspect our new bundles, and see that Moment.js has been isolated nicely into its own chunk.
+With this change, we can inspect our new bundles, and see that Moment.js has been isolated snugly into its own chunk.
 
 ![Bundle After](/assets/django-and-vue-multipage-assets/Screenshot_bundles_after.png){:width="50%" .center-image}
 
@@ -179,9 +176,7 @@ If we were to visit our application now with our web browser, our component woul
 
 ### Multiple Entry Points per Page
 
-To lazy-load our component, we will actually be lazy-loading an entire Vue entry point. 
-
-Usually in a Vue multi-page app (MPA), there is one-to-one correspondence between entry point and physical page.  This is reflected in the Vue configuration, where entry points are defined in a list called `pages`.  But, this is not a formal restriction; we can in fact load as many entry points as we like on each physical html page.
+To lazy-load our component, we will actually be lazy-loading an entire Vue entry point. Usually in a Vue multi-page app (MPA), there is one-to-one correspondence between entry point and physical page.  This is reflected in the Vue configuration, where entry points are defined in a list called `pages`.  But, this is not a formal restriction; we can in fact load as many entry points as we like on each physical html page.
 
 In our case, our index page will load two entry points: 
  * `index` which loads immediately and contains the minimum js/css necessary to render our initial page load
@@ -201,7 +196,7 @@ const pages = {
 
 Note that unlike our other entry points, `stopwatch` is dependent not only on the vendors chunk, but on our newly created `chunk-moment`.  
 
-And here's the code for the new entry point `srcs/stopwatch.js`, identical in structure to our other entry points:
+And here's the code for the new entry point `src/stopwatch.js`, identical in structure to our other entry points:
 
 ```js
 import Vue from "vue/dist/vue.js";
@@ -215,7 +210,7 @@ new Vue({
 });
 ```
 
-The only notable variation is that we are now dynamically loading the Stopwatch component instead of using a static import.  While this is not strictly necessary, doing so will eliminate the need to manually render dependent chunks (in this case `chunk-moment`) in our Django template.  Instead, the component will dynamically load its own dependencies.
+The only notable variation is that we are now dynamically loading the Stopwatch component instead of using a static import.  While this is not strictly necessary, doing so will eliminate the need to manually render dependent chunks (in this case `chunk-moment`) in our Django template.  Instead, our component will dynamically load its own dependencies.
 
 
 
@@ -224,7 +219,7 @@ The only notable variation is that we are now dynamically loading the Stopwatch 
 
 Now that our dependencies are isolated into chunks, we can begin work on lazy-loading our Stopwatch component. 
 
-As a building block, let's first implement a vanilla Javascript function `load_bundle_file` to dynamically load an arbitrary javascript or css resource.  Note for simplicity of the example, I inlined this script directly in the example app's base template, but of course you could use your Django foo to put this wherever is appropriate (and speedy).
+As a building block, let's first implement a vanilla Javascript function `load_bundle_file` to dynamically load an arbitrary Javascript or CSS resource.  Note for simplicity of the example, I inlined this script directly in the example app's base template, but of course you could use your Django foo to put this wherever is appropriate (and speedy).
 
 ```js
 function load_bundle_file(url, filetype) {
@@ -244,9 +239,9 @@ function load_bundle_file(url, filetype) {
 } 
 ```
 
-The function accepts two arguments, a url to load and the type of that resource (i.e. javascript or css).  The script creates a corresponding link or script tag and appends it to the DOM's head.   
+The function accepts two arguments, a url to load and the type of that resource (i.e. js or css).  The script creates a corresponding link or script tag and appends it to the DOM's head.   
 
-Next, we'll use this Javascript function to dynamically load our bundles.  To do so, I created a Django template tag to mimic `render_bundle` from `django-webpack-loader`.  I called this new template tag `lazy_render_bundle` and placed it in a custom template tag library `lazy_weback_loader`.  
+Next, we'll use this Javascript function to dynamically load our bundles.  To do so, I created a Django template tag to mimic `render_bundle` from `django-webpack-loader`.  I called this new template tag `lazy_render_bundle` and placed it in a custom template tag library `lazy_webpack_loader`.  
 
 ```py
 from typing import Dict
@@ -274,7 +269,7 @@ And the corresponding template html:
 {% endfor %}{% endraw %}
 ```
 
-The template tag accepts a bundle name, but instead of directly rendering the bundle, it instead obtains all associated files for that bundle.  For each, it then calls our `load_bundle_file` javascript function to dynamically load each js/css resource in the bundle.
+The template tag accepts a bundle name, but instead of directly rendering the bundle, it instead obtains all associated files for that bundle.  For each, it then calls our `load_bundle_file` Javascript function to dynamically load each js/css resource in the bundle.
 
 
 
