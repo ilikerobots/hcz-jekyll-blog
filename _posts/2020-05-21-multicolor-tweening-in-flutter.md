@@ -118,7 +118,7 @@ All other code remains identical.
 ## Rainbow Interpolation Approach
 
 
-`RainbowColorTween` utlizes the `Rainbow` multicolor interpolation class behind the scenes.  If a widget involves numerous derived multicolor animations, especially those dependent on the spectrum itself, then it may be useful to directly use Rainbow spectrum interpolation.  For example, the following example shows the text foreground color "lagging" one color behind the background in the sequence:
+`RainbowColorTween` utilizes the `Rainbow` multicolor interpolation class behind the scenes.  If a widget involves numerous derived multicolor animations, especially those dependent on the spectrum itself, then it may be useful to directly use Rainbow spectrum interpolation.  For example, the following widget shows the text foreground color "lagging" one color behind the background in the sequence:
 
 ```dart
 class _RainbowBoxState extends State<RainbowBox>
